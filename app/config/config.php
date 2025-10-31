@@ -1,9 +1,9 @@
 <?php
-define("DBNAME", "localhost");
+define("DBHOST", "localhost");
 define("DBTABLE", "phpdasar2");
 define("DBUSERNAME", "root");
 define("DBPASS", "");
 
-define("BASEURL", "http://localhost/belajar_php/mvc3/public");
+define("BASEURL", "http://localhost/belajar_php/mvc5/public");
 
 ?>

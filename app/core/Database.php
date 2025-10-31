@@ -3,15 +3,15 @@
 class Database{
 	private $dbh, $stmt, $dsn;
 	public function __construct(){
-		$this->dsn = "mysql:host=".DBNAME.";dbname=".TABLETABLE;
+		$this->dsn = "mysql:host=".DBHOST.";dbname=".DBTABLE;
 		$options = [
 			PDO::ATTR_PERSISTENT => true,
 			PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
 		];
 		try{
-			$dbh = new PDO($this->dsn, DBUSERNAME, DBPASS, options);
+			$this->dbh = new PDO($this->dsn, DBUSERNAME, DBPASS, $options);
 		}catch(PDOException $e){
-			echo $e->getMassage();
+			echo $e->getMessage();
 		}
 	}
 
@@ -44,11 +44,11 @@ class Database{
 	}
 
 	public function getAllData(){
-		$this->stmt->fetchAll(PDO::FETCH_ASSOC);
+		return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 
 	public function getSelectedData(){
-		$this->stmt->feth(PDO::FETCH_ASSOC);
+		return $this->stmt->fetch(PDO::FETCH_ASSOC);
 	}
 }
 

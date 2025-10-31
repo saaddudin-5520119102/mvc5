@@ -6,12 +6,9 @@ class App{
 	public function __construct(){
 		if(isset($_GET['url'])){
 			$url = $this->getUrl();
+			$urlInfo = $url;
 			if(!file_exists("../app/controllers/{$url[0]}.php")){
-				require_once "../app/controllers/Home.php";
-				$this->Controller = new Home;
-				$this->param[]=implode('/', $url);
-				call_user_func_array([$this->Controller, "notfound"], $this->param);
-				die;
+				$this->redirectNotFound($urlInfo);
 			}
 			$this->Controller =  $url[0];
 			unset($url[0]);
@@ -24,9 +21,7 @@ class App{
 				$this->method = $url[1];
 				unset($url[1]);
 			}else{
-				$this->param[]=strtolower(get_class( $this->Controller))."/".implode('//', $url);
-				call_user_func_array([$this->Controller, "notfound"], $this->param);
-				die;
+				$this->redirectNotFound($urlInfo);
 			}
 		}
 		if(!empty($url[2])){
@@ -41,6 +36,14 @@ class App{
 		$url = filter_var($url, FILTER_SANITIZE_URL);
 		$url = explode("/", $url);
 		return $url;
+	}
+
+	private function redirectNotFound($url){
+		require_once "../app/controllers/Home.php";
+		$home = new Home;
+		$this->param[]=implode('/', $url);
+		call_user_func_array([$home, "notfound"], $this->param);
+		die;
 	}
 }
 
