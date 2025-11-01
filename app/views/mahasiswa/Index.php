@@ -1,4 +1,9 @@
 <?php
+$i=1;
+if($data["currentPage"]!=1){
+	echo "benar";
+}
+echo $data["currentPage"];
 ?>
 <div class="container part1">
 
@@ -60,12 +65,18 @@
 
 	<!-- Pagination -->
 	<div class="pagination">
-		<a href="#">&laquo;</a>
-		<a href="#" class="active">1</a>
-		<a href="#">2</a>
-		<a href="#">3</a>
-		<a href="#">4</a>
-		<a href="#">&raquo;</a>
+		<?php if($data["currentPage"] != 1):?>
+			<a href="#">&laquo;</a>
+		<?php endif;?>
+		
+		<?php while($i<=$data["pageCount"]):?>
+			<!-- <a href="<?=BASEURL.'/mahasiswa/index/'.$i.'/'.$data['search'];?>">2</a> -->
+			<a href="<?=BASEURL.'/mahasiswa/index/'.$i;?>"><?=$i;?></a>
+			<?php $i++;?>
+		<?php endwhile;?>
+		<?php if($data["currentPage"] != $data["pageCount"]):?>
+			<a href="#">&raquo;</a>
+		<?php endif;?>
 	</div>
 
 </div>

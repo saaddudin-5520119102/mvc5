@@ -13,7 +13,7 @@
     </div>
     <div class="right-nav">
       <a href="#about">About</a>
-      <a href="<?=BASEURL.'/mahasiswa';?>">Mahasiswa</a>
+      <a href="<?=BASEURL.'/mahasiswa/index';?>">Mahasiswa</a>
       <a href="#contact">Contact</a>
       <div class="login-logout-nav">
 	      <a href="#login" class="login">Login</a>
