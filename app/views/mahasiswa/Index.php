@@ -14,6 +14,7 @@ echo $data["currentPage"];
 			<div class="search-box">
 				<form action="" method="GET">
 					<input type="text" name="search" placeholder="Cari mahasiswa..." value="<?= htmlspecialchars($_GET['search'] ?? '') ?>" autofocus>
+					<button type="submit">Cari!</button>
 				</form>
 			</div>
 			<button class="btn" id="tambahModalBtn">+ Tambah Mahasiswa</button>

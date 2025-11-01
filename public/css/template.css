@@ -199,14 +199,48 @@ table {
   background-color: #0056b3;
 }
 
+.search-box {
+/*  padding: 9px 12px;*/
+  width: 250px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: 0.2s;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.search-box button{
+  padding: 9px 0px;
+  background-color: #007bff;
+  color: white;
+  width: 65px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: 0.2s;
+  position: absolute;
+  right: -1px;
+  top: -1px;
+  bottom: -1px;
+}
+
 .search-box input {
+  padding: 9px 12px;
+  width: calc(100% - 83px);
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  transition: 0.2s;
+}
+/*.search-box input {
   padding: 9px 12px;
   width: 250px;
   border: 1px solid #ccc;
   border-radius: 8px;
   outline: none;
   transition: 0.2s;
-}
+}*/
 
 .search-box input:focus {
   border-color: #007bff;
