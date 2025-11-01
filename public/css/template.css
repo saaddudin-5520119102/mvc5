@@ -168,7 +168,7 @@ table {
 }
 
 /* === Table Header Section === */
-.table-header {
+.tableHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -177,7 +177,7 @@ table {
   gap: 10px;
 }
 
-.table-header h2 {
+.tableHeader h2 {
   margin: 0;
   color: #333;
   font-weight: 600;
@@ -199,8 +199,7 @@ table {
   background-color: #0056b3;
 }
 
-.search-box {
-/*  padding: 9px 12px;*/
+.searchBox {
   width: 250px;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -210,7 +209,7 @@ table {
   position: relative;
 }
 
-.search-box button{
+.searchBox button{
   padding: 9px 0px;
   background-color: #007bff;
   color: white;
@@ -225,7 +224,7 @@ table {
   bottom: -1px;
 }
 
-.search-box input {
+.searchBox input {
   padding: 9px 12px;
   width: calc(100% - 83px);
   border: none;
@@ -233,16 +232,8 @@ table {
   outline: none;
   transition: 0.2s;
 }
-/*.search-box input {
-  padding: 9px 12px;
-  width: 250px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  outline: none;
-  transition: 0.2s;
-}*/
 
-.search-box input:focus {
+.searchBox input:focus {
   border-color: #007bff;
   box-shadow: 0 0 3px rgba(0,123,255,0.4);
 }
@@ -291,7 +282,7 @@ a:hover {
 }
 
 /* === Modal === */
-.modal-overlay {
+.modalOverlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -393,12 +384,12 @@ a:hover {
 
 /* === Responsive === */
 @media (max-width: 700px) {
-  .table-header {
+  .tableHeader {
     flex-direction: column;
     align-items: stretch;
   }
 
-  .search-box input {
+  .searchBox input {
     width: 100%;
   }
 

@@ -7,11 +7,11 @@ echo $data["currentPage"];
 ?>
 <div class="container part1">
 
-	<div class="table-header">
+	<div class="tableHeader">
 		<h2>Daftar Mahasiswa</h2>
 
 		<div class="controls" style="display:flex; gap:10px;">
-			<div class="search-box">
+			<div class="searchBox">
 				<form action="" method="GET">
 					<input type="text" name="search" placeholder="Cari mahasiswa..." value="<?= htmlspecialchars($_GET['search'] ?? '') ?>" autofocus>
 					<button type="submit">Cari!</button>
@@ -20,7 +20,7 @@ echo $data["currentPage"];
 			<button class="btn" id="tambahModalBtn">+ Tambah Mahasiswa</button>
 		</div>
 	</div>
-
+	<div class="table-container"></div>
 	<table id="tableMahasiswa">
 		<thead>
 			<tr>
@@ -83,7 +83,7 @@ echo $data["currentPage"];
 </div>
 
 <!-- === Modal === -->
-<div class="modal-overlay" id="modalOverlay">
+<div class="modalOverlay" id="modalOverlay">
 	<div class="modal" id="modalBox">
 		<div class="modal-header">
 			<h3>Tambah Mahasiswa</h3>
