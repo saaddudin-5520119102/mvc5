@@ -60,6 +60,7 @@ table {
       align-items: center;
       background-color: #0b5ed7;
 /*      padding: 15px 30px;*/
+      height: 50px;
     }
 
     /* Left side */
@@ -88,7 +89,7 @@ table {
     .right-nav {
       display: flex;
       align-items: center;
-      height: 50px;
+      height: 100%;
     }
 
     .right-nav a {
@@ -339,6 +340,20 @@ a:hover {
 .ubahLink{
   cursor: pointer;
   background-color: pink;
+}
+
+.center-flex-fit-size{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 35px;
+}
+
+.fit-min-header{
+  height: calc(100vh - 50px);
+  width: 100%;
 }
 
 

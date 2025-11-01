@@ -100,6 +100,8 @@ const cancelModalBtn = document.getElementById('cancelModalBtn');
 const mahasiswaForm = document.getElementById('mahasiswaForm');
 // const ubahLink = document.getElementsByClassName('ubahLink');
 const tableMahasiswa = document.getElementById('tableMahasiswa');
+const namaInput = document.querySelector("input[name='nama']");
+const searchInput = document.querySelector("input[name='search']");
 
 // function openModal() {
 // 	modalOverlay.style.display = 'flex';
@@ -109,14 +111,10 @@ const tableMahasiswa = document.getElementById('tableMahasiswa');
 function closeModal() {
 	modalBox.classList.remove('active');
 	// setTimeout(() => modalOverlay.style.display = 'none', 200);
-	const namaInput = document.querySelector("input[name='nama']");
 	if (namaInput) namaInput.removeAttribute('autofocus');
-
 	// hide overlay after animation; then set focus to search input
 	setTimeout(() => {
 		modalOverlay.style.display = 'none';
-
-		const searchInput = document.querySelector("input[name='search']");
 		if (searchInput) {
 			// ensure attribute removal / addition isn't needed for runtime focus
 			searchInput.removeAttribute('autofocus');
@@ -133,7 +131,6 @@ tambahModalBtn.addEventListener('click', function(e){
 		modalBox.classList.add('active');
 
 		// focus after modal is visible (give it a tiny delay to ensure styles applied)
-		const namaInput = document.querySelector("input[name='nama']");
 		if (namaInput) {
 			// remove autofocus attribute (not needed) and focus programmatically
 			namaInput.removeAttribute('autofocus');
@@ -160,6 +157,17 @@ tableMahasiswa.addEventListener('click', function(e){
 	    	if (xhr.readyState === 4) {
 			    if (xhr.status === 200) {
 			    	modalOverlay.style.display = 'flex';
+					setTimeout(() => {
+						modalBox.classList.add('active');
+
+						// focus after modal is visible (give it a tiny delay to ensure styles applied)
+						if (namaInput) {
+							// remove autofocus attribute (not needed) and focus programmatically
+							namaInput.removeAttribute('autofocus');
+							// small delay so element is actually visible and focusable
+							setTimeout(() => namaInput.focus(), 20);
+						}
+					}, 10);
 			      	setTimeout(() => modalBox.classList.add('active'), 10);
 			      	modalOverlay.querySelector("h3").innerHTML = "Ubah Data Mahasiswa";
 			      	mahasiswaForm.setAttribute("action", "<?= BASEURL ?>/mahasiswa/ubah");

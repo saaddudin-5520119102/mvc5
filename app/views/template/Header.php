@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="css/template.css">
+	<link rel="stylesheet" type="text/css" href="http://localhost/belajar_php/mvc5/public/css/template.css">
 	<title>Halaman <?=$data["title"]?></title>
 </head>
 <body>
