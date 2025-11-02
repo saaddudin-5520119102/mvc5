@@ -1,83 +1,86 @@
 <?php
 $i=1;
-if($data["currentPage"]!=1){
-	echo "benar";
-}
-echo $data["currentPage"];
 ?>
 <div class="container part1">
-
 	<div class="tableHeader">
 		<h2>Daftar Mahasiswa</h2>
 
 		<div class="controls" style="display:flex; gap:10px;">
-			<div class="searchBox">
+			<div class="searchBox" id="searchBox">
 				<form action="" method="GET">
-					<input type="text" name="search" placeholder="Cari mahasiswa..." value="<?= htmlspecialchars($_GET['search'] ?? '') ?>" autofocus>
+					<?php if(empty($data["filter"])):?>
+						<input type="text" name="search" placeholder="Cari mahasiswa..." autofocus>
+					<?php else:?>
+						<input type="text" name="search" placeholder="Cari mahasiswa..." value="<?=$data["filter"];?>" autofocus>
+					<?php endif;?>
 					<button type="submit">Cari!</button>
 				</form>
 			</div>
 			<button class="btn" id="tambahModalBtn">+ Tambah Mahasiswa</button>
 		</div>
 	</div>
-	<div class="table-container"></div>
-	<table id="tableMahasiswa">
-		<thead>
-			<tr>
-				<th>No</th>
-				<th>Aksi</th>
-				<th>Gambar</th>
-				<th>Nama</th>
-				<th>NRP</th>
-				<th>Email</th>
-				<th>Jurusan</th>
-			</tr>
-		</thead>
-		<tbody>
-			<?php $nom = 1; ?>
-			<?php if(isset($data["mahasiswa"])):;?>
-				<?php foreach($data["mahasiswa"] as $mhs): ?>
-					<tr>
-						<th><?= $nom ?></th>
-						<td>
-							<a href="hapus.php?id=<?= $mhs['id'] ?>">Hapus</a> |
-							<!-- <a class="ubahLink" data-id="<?= $mhs['id'] ?>" href="">Ubah</a> -->
-							<button class="ubahLink" data-id="<?= $mhs['id'] ?>" >Ubah</button>
-						</td>
-						<td>
-							<?php if (!empty($mhs['gambar'])): ?>
-								<img src="img/<?= $mhs['gambar'] ?>" alt="Foto Mahasiswa" height="70">
-							<?php else: ?>
-								<img src="img/nofoto.png" height="70">
-							<?php endif; ?>
-						</td>
-						<td><?= $mhs['nama'] ?></td>
-						<td><?= $mhs['nrp'] ?></td>
-						<td><?= $mhs['email'] ?></td>
-						<td><?= $mhs['jurusan'] ?></td>
-					</tr>
-					<?php $nom++ ?>
-				<?php endforeach; ?>
-			<?php else:?>
-				<h1>Data mahasiswa is missing</h1>
-			<?php endif;?>
-		</tbody>
-	</table>
+	<div id="tableContainer">
+		<table id="tableMahasiswa">
+			<thead>
+				<tr>
+					<th>No</th>
+					<th>Aksi</th>
+					<th>Gambar</th>
+					<th>Nama</th>
+					<th>NRP</th>
+					<th>Email</th>
+					<th>Jurusan</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php $nom = 1; ?>
+				<?php if(isset($data["mahasiswa"])):;?>
+					<?php foreach($data["mahasiswa"] as $mhs): ?>
+						<tr>
+							<th><?= $nom ?></th>
+							<td>
+								<a href="hapus.php?id=<?= $mhs['id'] ?>">Hapus</a> |
+								<!-- <a class="ubahLink" data-id="<?= $mhs['id'] ?>" href="">Ubah</a> -->
+								<button class="ubahLink" data-id="<?= $mhs['id'] ?>" >Ubah</button>
+							</td>
+							<td>
+								<?php if (!empty($mhs['gambar'])): ?>
+									<img src="img/<?= $mhs['gambar'] ?>" alt="Foto Mahasiswa" height="70">
+								<?php else: ?>
+									<img src="img/nofoto.png" height="70">
+								<?php endif; ?>
+							</td>
+							<td><?= $mhs['nama'] ?></td>
+							<td><?= $mhs['nrp'] ?></td>
+							<td><?= $mhs['email'] ?></td>
+							<td><?= $mhs['jurusan'] ?></td>
+						</tr>
+						<?php $nom++ ?>
+					<?php endforeach; ?>
+				<?php else:?>
+					<h1>Data mahasiswa is missing</h1>
+				<?php endif;?>
+			</tbody>
+		</table>
 
-	<!-- Pagination -->
-	<div class="pagination">
-		<?php if($data["currentPage"] != 1):?>
-			<a href="#">&laquo;</a>
-		<?php endif;?>
-		
-		<?php while($i<=$data["pageCount"]):?>
-			<!-- <a href="<?=BASEURL.'/mahasiswa/index/'.$i.'/'.$data['search'];?>">2</a> -->
-			<a href="<?=BASEURL.'/mahasiswa/index/'.$i;?>"><?=$i;?></a>
-			<?php $i++;?>
-		<?php endwhile;?>
-		<?php if($data["currentPage"] != $data["pageCount"]):?>
-			<a href="#">&raquo;</a>
-		<?php endif;?>
+		<!-- Pagination -->
+		<div class="pagination">
+			<?php if($data["currentPage"] != 1):?>
+				<a href="#">&laquo;</a>
+			<?php endif;?>
+			
+			<?php while($i<=$data["pageCount"]):?>
+				<?php if(empty($data["filter"])):?>
+					<a href="<?=BASEURL.'/mahasiswa/index/'.$i;?>"><?=$i;?></a>
+				<?php else:?>
+					<a href="<?=BASEURL.'/mahasiswa/index/'.$i."/".$data["filter"];?>"><?=$i;?></a>
+				<?php endif;?>
+				<?php $i++;?>
+			<?php endwhile;?>
+			<?php if($data["currentPage"] != $data["pageCount"]):?>
+				<a href="#">&raquo;</a>
+			<?php endif;?>
+		</div>
 	</div>
 
 </div>
@@ -104,6 +107,7 @@ echo $data["currentPage"];
 </div>
 
 <script>
+let checkSearchSubmit = true;
 const tambahModalBtn = document.getElementById('tambahModalBtn');
 const modalOverlay = document.getElementById('modalOverlay');
 const modalBox = document.getElementById('modalBox');
@@ -114,11 +118,28 @@ const mahasiswaForm = document.getElementById('mahasiswaForm');
 const tableMahasiswa = document.getElementById('tableMahasiswa');
 const namaInput = document.querySelector("input[name='nama']");
 const searchInput = document.querySelector("input[name='search']");
-
+const searchBoxForm = document.querySelector("#searchBox form");
+const tableContainer = document.getElementById('tableContainer');
 // function openModal() {
 // 	modalOverlay.style.display = 'flex';
 // 	setTimeout(() => modalBox.classList.add('active'), 10);
 // }
+// function falsecheckSearchSubmit(){
+// 	checkSearchSubmit = false;
+// }
+searchBoxForm.addEventListener('submit', function(e) {
+  e.preventDefault();
+  console.log("success");
+  document.location.href = "<?= BASEURL . '/mahasiswa/index/1/'; ?>" + searchInput.value;
+  // const xhr = new XMLHttpRequest();
+  // xhr.onreadystatechange = ()=>{
+  // 	if(xhr.readyState == 4 && xhr.status == 200){
+// 		tableContainer.innerHTML = "berhasil";
+  // 	}
+  // }
+  // xhr.open("GET", "<?= BASEURL . '/mahasiswa/index/1/'; ?>" + searchInput.value, true);
+  // xhr.send();
+});
 
 function closeModal() {
 	modalBox.classList.remove('active');
@@ -137,7 +158,7 @@ function closeModal() {
 }
 
 tambahModalBtn.addEventListener('click', function(e){
-	e.preventDefault;
+	e.preventDefault();
 	modalOverlay.style.display = 'flex';
 	setTimeout(() => {
 		modalBox.classList.add('active');
@@ -210,7 +231,7 @@ modalOverlay.addEventListener('click', (e) => {
 // Just demo form submission
 // document.getElementById('mahasiswaForm').addEventListener('submit', function(e) {
 // 	e.preventDefault();
-// 	alert('Data Mahasiswa akan disimpan (belum terhubung ke backend).');
+// 	alert('Data Mahasiswa akan disimpan (belum terhubu		tableContainer.innerHTML = xhr.responseText;ng ke backend).');
 // 	closeModal();
 // });
 </script>

@@ -227,6 +227,7 @@ table {
 .searchBox input {
   padding: 9px 12px;
   width: calc(100% - 83px);
+  max-width: calc(100% - 83px);
   border: none;
   border-radius: 8px;
   outline: none;

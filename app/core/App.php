@@ -23,11 +23,12 @@ class App{
 			}else{
 				$this->redirectNotFound($urlInfo);
 			}
-		}else{
-			$currentController = get_class($this->controller);
-			header("Location: ".BASEURL."/{$currentController}/index");
-			die;
 		}
+		// else{
+		// 	$currentController = get_class($this->controller);
+		// 	header("Location: ".BASEURL."/{$currentController}/index");
+		// 	die;
+		// }
 		if(!empty($url[2])){
 			$this->param = array_values($url);
 		}
