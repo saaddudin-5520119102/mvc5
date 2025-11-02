@@ -15,11 +15,11 @@ class Database{
 		}
 	}
 
-	public function prepare($query){
+	protected function prepare($query){
 		$this->stmt = $this->dbh->prepare($query);
 	}
 
-	public function bind($param, $value, $type = null){
+	protected function bind($param, $value, $type = null){
 		if(!$type){
 			switch(true){
 				case is_null($value):
@@ -39,16 +39,19 @@ class Database{
 		$this->stmt->bindValue($param, $value, $type);
 	}
 
-	public function execute(){
+	protected function execute(){
 		$this->stmt->execute();
 	}
 
-	public function getAllData(){
+	protected function getAllData(){
 		return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 
-	public function getSelectedData(){
+	protected function getSelectedData(){
 		return $this->stmt->fetch(PDO::FETCH_ASSOC);
+	}
+	protected function rowCount(){
+		return $this->stmt->rowCount();
 	}
 }
 

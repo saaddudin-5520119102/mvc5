@@ -6,7 +6,6 @@ class Mahasiswa_model extends Database
 		if(empty($search)){
 			// echo "empty"; die;
 			$dataTotal = $this->getCountTotalTable("SELECT COUNT(*) AS total FROM mahasiswa");
-			$dataTotal = 8;
 			$jumlahPerHalaman = 5;
 			$jumlahHalaman = ceil($dataTotal / $jumlahPerHalaman);
 			$indexAwalData = ($page*$jumlahPerHalaman)-$jumlahPerHalaman;
@@ -47,7 +46,30 @@ class Mahasiswa_model extends Database
 		$this->execute();
 		return $this->getAllData()[0]["total"];
 	}
-	
+	public function tambahDataMahasiswa($data){
+		$this->prepare("INSERT INTO mahasiswa VALUES ('', :nama, :nrp, :email, :jurusan, '')");
+		$this->bind('nama', $data["nama"]);
+		$this->bind('nrp', $data["nrp"]);
+		$this->bind('email', $data["email"]);
+		$this->bind('jurusan', $data["jurusan"]);
+		$this->execute();
+		return $this->rowCount();
+	}
+	public function selectDataJSON($id){
+		$this->prepare("SELECT * FROM mahasiswa WHERE id = $id");
+		$this->execute();
+		return json_encode($this->getSelectedData()) ;
+	}
+	public function ubahDataMahasiswa($data){
+		$this->prepare("UPDATE mahasiswa SET nama = :nama, nrp = :nrp, email = :email, jurusan = :jurusan WHERE id = :id");
+		$this->bind('id', $data["id"]);
+		$this->bind('nama', $data["nama"]);
+		$this->bind('nrp', $data["nrp"]);
+		$this->bind('email', $data["email"]);
+		$this->bind('jurusan', $data["jurusan"]);
+		$this->execute();
+		return $this->rowCount();
+	}
 }
 
 ?>

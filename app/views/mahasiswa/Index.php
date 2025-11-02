@@ -93,6 +93,7 @@ $i=1;
 			<span id="closeModalBtn" style="cursor:pointer; font-size:20px;">&times;</span>
 		</div>
 		<form id="mahasiswaForm" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="id">
 			<input type="text" placeholder="Nama" name="nama" required>
 			<input type="text" placeholder="NRP" name="nrp" required>
 			<input type="text" placeholder="Email" name="email" required>
@@ -205,6 +206,7 @@ tableMahasiswa.addEventListener('click', function(e){
 			      	modalOverlay.querySelector("h3").innerHTML = "Ubah Data Mahasiswa";
 			      	mahasiswaForm.setAttribute("action", "<?= BASEURL ?>/mahasiswa/ubah");
 			      	const jsonData = JSON.parse(xhr.responseText);
+			      	document.querySelector("input[name='id']").value = jsonData.id;
 			      	document.querySelector("input[name='nama']").value = jsonData.nama;
 			      	document.querySelector("input[name='nrp']").value = jsonData.nrp;
 			      	document.querySelector("input[name='email']").value = jsonData.email;
