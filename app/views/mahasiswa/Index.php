@@ -115,31 +115,16 @@ const modalBox = document.getElementById('modalBox');
 const closeModalBtn = document.getElementById('closeModalBtn');
 const cancelModalBtn = document.getElementById('cancelModalBtn');
 const mahasiswaForm = document.getElementById('mahasiswaForm');
-// const ubahLink = document.getElementsByClassName('ubahLink');
 const tableMahasiswa = document.getElementById('tableMahasiswa');
 const namaInput = document.querySelector("input[name='nama']");
 const searchInput = document.querySelector("input[name='search']");
 const searchBoxForm = document.querySelector("#searchBox form");
 const tableContainer = document.getElementById('tableContainer');
-// function openModal() {
-// 	modalOverlay.style.display = 'flex';
-// 	setTimeout(() => modalBox.classList.add('active'), 10);
-// }
-// function falsecheckSearchSubmit(){
-// 	checkSearchSubmit = false;
-// }
+
 searchBoxForm.addEventListener('submit', function(e) {
   e.preventDefault();
   console.log("success");
   document.location.href = "<?= BASEURL . '/mahasiswa/index/1/'; ?>" + searchInput.value;
-  // const xhr = new XMLHttpRequest();
-  // xhr.onreadystatechange = ()=>{
-  // 	if(xhr.readyState == 4 && xhr.status == 200){
-// 		tableContainer.innerHTML = "berhasil";
-  // 	}
-  // }
-  // xhr.open("GET", "<?= BASEURL . '/mahasiswa/index/1/'; ?>" + searchInput.value, true);
-  // xhr.send();
 });
 
 function closeModal() {
@@ -181,6 +166,7 @@ tambahModalBtn.addEventListener('click', function(e){
   	document.querySelector("input[name='jurusan']").value = "";
 	modalOverlay.querySelector('button[type="submit"]').innerHTML = "Tambah Mahasiswa";
 });
+
 tableMahasiswa.addEventListener('click', function(e){
 	if (e.target.classList.contains('ubahLink')) {
 	    e.preventDefault();
@@ -193,7 +179,6 @@ tableMahasiswa.addEventListener('click', function(e){
 			    	modalOverlay.style.display = 'flex';
 					setTimeout(() => {
 						modalBox.classList.add('active');
-
 						// focus after modal is visible (give it a tiny delay to ensure styles applied)
 						if (namaInput) {
 							// remove autofocus attribute (not needed) and focus programmatically
@@ -224,16 +209,11 @@ tableMahasiswa.addEventListener('click', function(e){
 	    xhr.send(formData);
 	}
 });
+
 closeModalBtn.addEventListener('click', closeModal);
 cancelModalBtn.addEventListener('click', closeModal);
 modalOverlay.addEventListener('click', (e) => {
 	if (e.target === modalOverlay) closeModal();
 });
 
-// Just demo form submission
-// document.getElementById('mahasiswaForm').addEventListener('submit', function(e) {
-// 	e.preventDefault();
-// 	alert('Data Mahasiswa akan disimpan (belum terhubu		tableContainer.innerHTML = xhr.responseText;ng ke backend).');
-// 	closeModal();
-// });
 </script>

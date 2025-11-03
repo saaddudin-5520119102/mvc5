@@ -232,6 +232,7 @@ table {
   border-radius: 8px;
   outline: none;
   transition: 0.2s;
+  box-shadow: none;
 }
 
 .searchBox input:focus {
@@ -258,11 +259,17 @@ th, td {
 }
 
 tbody tr:nth-child(even) {
-  background-color: #f9f9f9;
+/*  background-color: #f9f9f9;*/
+background-color: #ededed;
 }
 
 tbody tr:hover {
-  background-color: #eef6ff;
+  color: rgba(50, 50, 50, 1);
+    background-color: rgba(145, 92, 182, .2);
+    box-shadow: 0 5px 15px rgba(145, 92, 182, .3);
+    text-shadow: 1px 10px 25px rgba(255, 255, 255, 1);
+    font-weight: 500;
+/*  background-color: #eef6ff;*/
   transition: background 0.2s ease;
 }
 
@@ -381,6 +388,109 @@ a:hover {
   height: calc(100vh - 50px);
   width: 100%;
 }
+
+.authForm1{
+  padding: 15px 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 50%;
+  left: 50%; /* For horizontal centering as well */
+  transform: translate(-50%, -50%); /* Moves the element back by half its own width and height */
+  box-shadow: 2px 3px 1px rgba(0, 0, 0, .4);
+  box-sizing: border-box;
+}
+
+.authForm1 form{
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+}
+
+.authForm1 label{
+  margin-top: 10px;
+}
+.authForm1 input{
+  font-size: 17px;
+  color: #5e5e5e;
+  text-shadow: 0.2px 0.3px 0.4px rgba(0, 0, 0, .2);
+  font-weight: 50;
+  margin-top: 3px;
+  height: 30px;
+  /*max-width: 500px;
+  min-width: 270px;*/
+  min-width: 113%;
+  border-radius: 5px;
+  outline: none;
+  box-shadow: 1px 2px 0.3px rgba(0, 0, 0, .1);
+}
+.authForm1 .btn1{
+  background-color: #789ff5;
+  color: #fff;
+  text-shadow: 1px 1.5px .5px rgba(0, 0, 0, .4);
+  font-size: 23px;
+  font-weight: 300;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px 7px;
+  box-shadow: 1px 2px 0.3px rgba(0, 0, 0, .1);
+  cursor: pointer;
+  transition: all 0.5s;
+  min-width: 117%;
+}
+.authForm1 .btn1:hover{
+  background-color: #6394ff;
+  box-shadow: 1px 2px 0.7px rgba(0, 0, 0, .2);
+}
+
+.profNav{
+/*  background-color: pink;*/
+  position: relative;
+  width: 150px;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  transition: all 0.5s ease;
+  cursor: pointer;
+  padding-left: 10px;
+/*  border-left: 1px solid white;*/
+}
+
+.profNav .garis{
+  width: 1px;
+  height: calc(100% - 8px);
+  background-color: white;
+  position: absolute;
+  left: 0px;
+}
+
+.profNav:hover{
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.nameNav {
+  width: 100px;                 /* fixed width */
+  white-space: nowrap;         /* prevent wrapping */
+  overflow: hidden;            /* hide overflow */
+  text-overflow: ellipsis;     /* show ellipsis */
+/*  direction: rtl;              */
+  text-align: righ;            /* keep text left-aligned visually */
+}
+
+.imageProfil{
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: blue;
+}
+
 
 
 /* === Responsive === */

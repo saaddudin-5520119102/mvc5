@@ -1,4 +1,8 @@
 <?php
+session_start();
+if(!isset($_SESSION["login"])){
+	header("Location: ".BASEURL."/auth/login");
+}
 
 class Mahasiswa extends Controller{
 	public function index($page = 1, $search = ''){
@@ -33,6 +37,7 @@ class Mahasiswa extends Controller{
 			echo "<script>alert('Data gagal diubah!');</script>";
 		}
 	}
+
 
 }
 ?>

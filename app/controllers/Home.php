@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 class Home extends Controller{
 	public function index($nama="admin", $jabatan="jabatan"){
