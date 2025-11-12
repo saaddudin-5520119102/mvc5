@@ -1,8 +1,29 @@
 <?php
 session_start();
-if(!isset($_SESSION["login"])){
-	header("Location: ".BASEURL."/auth/login");
+$ua = $_SERVER['HTTP_USER_AGENT'] ?? '';
+$ip = getUserIP();
+$pass = $ua.$ip;
+
+// $pass ="saad5680".$ua.$ip;
+
+
+if(!isset($_SESSION["login"])) {
+	redirectToLogin();
+}else{
+	if(!(password_verify($ua.$ip, $_SESSION["login"]))){
+		redirectToLogin();
+	}
 }
+
+if (!isset($_COOKIE['user_id'])){
+	redirectToLogin();
+}else{
+	if(!(password_verify("saad108".$pass, $_COOKIE['user_id']))){
+		redirectToLogin();
+	}			
+}
+	
+
 
 class Mahasiswa extends Controller{
 	public function index($page = 1, $search = ''){

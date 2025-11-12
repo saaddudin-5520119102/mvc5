@@ -21,10 +21,16 @@
 	      <a href="#about">About</a>
 	      <a href="<?=BASEURL.'/mahasiswa/index';?>">Mahasiswa</a>
 	      <a href="#contact">Contact</a>
-	      <div class="profNav">
+	      <div class="profNav" id="profNav">
 	      	<div class="garis"></div>
 		      <h1 class="nameNav">Sutono Bariso Songkolo Molo</h1>
 		      <div class="imageProfil"><img src=""></div>
+
+		       <!-- 👇 dropdown menu -->
+		      <div class="profileMenu">
+		        <a href="<?= BASEURL.'/profile'; ?>">Profil</a>
+		        <a href="<?= BASEURL.'/auth/logout'; ?>">Logout</a>
+		      </div>
 		  	</div>
 	    </div>
 	  </header>

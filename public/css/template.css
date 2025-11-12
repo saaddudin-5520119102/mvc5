@@ -491,7 +491,55 @@ a:hover {
   background-color: blue;
 }
 
+/* Active background color when menu is open */
+.profNav.active {
+  background-color: rgba(0, 0, 0, 0.1);
+}
 
+/* --- Dropdown Menu --- */
+.profileMenu {
+  position: absolute;
+  top: calc(100% + 5px);
+  right: 10px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  width: 200px;
+  min-width: 200px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: all 0.25s ease;
+  z-index: 100;
+  padding: 10px 14px;
+}
+
+/* When profNav is active, show the menu */
+.profNav.active .profileMenu {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* --- Menu items --- */
+.profileMenu a {
+/*  font-size: 25px;*/
+  display: block;
+  padding: 10px 14px;
+  width: calc(100% - 28px);
+  color: #333;
+  text-decoration: none;
+  font-size: 17px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+/* Hover effect for each menu item */
+.profileMenu a:hover {
+  background-color: #007bff;
+  color: white;
+}
 
 /* === Responsive === */
 @media (max-width: 700px) {
